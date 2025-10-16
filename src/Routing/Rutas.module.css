@@ -1,0 +1,143 @@
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🔹 Clase aplicada al body desde useEffect */
+.bodyFondo {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0a4120, #0c1268);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra superior */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.navLinks {
+  display: flex;
+  gap: 25px;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navLinks a:hover {
+  color: #00f5a0;
+}
+
+.btnLogin {
+  background: #00f5a0;
+  color: #0d1b2a;
+  padding: 8px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btnLogin:hover {
+  background: #00d9f5;
+  transform: translateY(-2px);
+}
+
+/* Contenido principal */
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.mainContent h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.mainContent p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.btnPrimary {
+  background: #00f5a0;
+  color: #0d1b2a;
+  border: none;
+  padding: 14px 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 245, 160, 0.3);
+}
+
+.btnPrimary:hover {
+  background: #00d9f5;
+  box-shadow: 0 8px 25px rgba(0, 245, 160, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Gradientes decorativos */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.circle1 {
+  width: 400px;
+  height: 400px;
+  background: #ff7b00;
+  top: 100px;
+  left: -100px;
+}
+
+.circle2 {
+  width: 500px;
+  height: 500px;
+  background: #ff0080;
+  bottom: -150px;
+  right: -100px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}

@@ -1,0 +1,138 @@
+/* Estilos solo para la página de login */
+body.body-login {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #09812d, #07174a);
+}
+
+/* Contenedor principal del login */
+body.body-login .container {
+  background: #0d1b2a;
+  border-radius: 15px;
+  width: 400px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+/* Accento lateral */
+body.body-login .side-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #00f5a0, #00d9f5);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+/* Título */
+body.body-login h2 {
+  text-align: center;
+  color: #e0e6ed;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* Toggle de cambio de sección */
+body.body-login .toggle {
+  text-align: center;
+  color: #8ca0b3;
+  margin-bottom: 30px;
+}
+
+body.body-login .toggle span {
+  color: #00f5a0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Labels e Inputs */
+body.body-login label {
+  display: block;
+  color: #a8b2c8;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+body.body-login input[type="text"],
+body.body-login input[type="password"],
+body.body-login input[type="email"] {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #23324d;
+  padding: 8px 0;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.3s;
+  margin-bottom: 25px;
+}
+
+body.body-login input:focus {
+  border-color: #00f5a0;
+}
+
+/* Checkbox */
+body.body-login .checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.85rem;
+  color: #a8b2c8;
+}
+
+body.body-login .checkbox input {
+  margin-right: 10px;
+  accent-color: #00f5a0;
+}
+
+body.body-login .checkbox a {
+  color: #00f5a0;
+  text-decoration: none;
+}
+
+/* Botón */
+body.body-login button {
+  width: 100%;
+  background: linear-gradient(to right, #00f5a0, #00d9f5);
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  color: #0d1b2a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 245, 160, 0.3);
+}
+
+body.body-login button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 245, 160, 0.4);
+}
+
+/* Texto inferior */
+body.body-login .bottom-text {
+  text-align: center;
+  color: #8ca0b3;
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+
+body.body-login .bottom-text span {
+  color: #00f5a0;
+  cursor: pointer;
+}
+
+body.body-login .error{
+  color: red;
+  margin: 10px;
+  padding: auto;
+}
