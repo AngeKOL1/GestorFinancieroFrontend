@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { CrearMetaDTO } from "../DTO/CrearMetaDTO";
 
 const API_URL = "http://localhost:3030/metas";
 
@@ -21,7 +22,7 @@ export const getMisMetas = async () => {
   }
 };
 
-export const crearMeta = async (nuevaMeta: { titulo: string; descripcion: string; montoObjetivo: number }) => {
+export const crearMeta = async (nuevaMeta: CrearMetaDTO) => {
   try {
     const response = await axios.post(API_URL, nuevaMeta, getAuthHeader());
     return response.data; 

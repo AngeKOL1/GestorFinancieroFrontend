@@ -1,5 +1,5 @@
 /* 🔹 Fondo global SOLO cuando el componente Registro esté activo */
-.registro-body {
+body.body-registro {
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -11,7 +11,7 @@
 }
 
 /* 🔹 Contenedor del formulario */
-.container {
+body.body-registro .container {
   background: #0d1b2a;
   border-radius: 15px;
   width: 400px;
@@ -22,7 +22,7 @@
 }
 
 /* Línea lateral decorativa */
-.side-accent {
+body.body-registro .side-accent {
   position: absolute;
   left: 0;
   top: 0;
@@ -34,7 +34,7 @@
 }
 
 /* Títulos */
-h2 {
+body.body-registro h2 {
   text-align: center;
   color: #e0e6ed;
   font-weight: 500;
@@ -42,20 +42,20 @@ h2 {
 }
 
 /* Subtexto de registro */
-.toggle {
+body.body-registro .toggle {
   text-align: center;
   color: #8ca0b3;
   margin-bottom: 30px;
 }
 
-.toggle span {
+body.body-registro .toggle span {
   color: #00f5a0;
   font-weight: 600;
   cursor: pointer;
 }
 
 /* Etiquetas */
-label {
+body.body-registro label {
   display: block;
   color: #a8b2c8;
   font-size: 0.9rem;
@@ -63,9 +63,9 @@ label {
 }
 
 /* Campos de entrada */
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+body.body-registro input[type="text"],
+body.body-registro input[type="password"],
+body.body-registro input[type="email"] {
   width: 100%;
   background: transparent;
   border: none;
@@ -77,12 +77,12 @@ input[type="email"] {
   margin-bottom: 25px;
 }
 
-input:focus {
+body.body-registro input:focus {
   border-color: #00f5a0;
 }
 
 /* Checkbox y texto */
-.checkbox {
+body.body-registro .checkbox {
   display: flex;
   align-items: center;
   margin-bottom: 25px;
@@ -90,18 +90,18 @@ input:focus {
   color: #a8b2c8;
 }
 
-.checkbox input {
+body.body-registro .checkbox input {
   margin-right: 10px;
   accent-color: #00f5a0;
 }
 
-.checkbox a {
+body.body-registro .checkbox a {
   color: #00f5a0;
   text-decoration: none;
 }
 
 /* Botón principal */
-button {
+body.body-registro button {
   width: 100%;
   background: linear-gradient(to right, #00f5a0, #00d9f5);
   border: none;
@@ -114,20 +114,26 @@ button {
   box-shadow: 0 4px 12px rgba(0, 245, 160, 0.3);
 }
 
-button:hover {
+body.body-registro button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 245, 160, 0.4);
 }
 
 /* Texto inferior */
-.bottom-text {
+body.body-registro .bottom-text {
   text-align: center;
   color: #8ca0b3;
   margin-top: 20px;
   font-size: 0.85rem;
 }
 
-.bottom-text span {
+body.body-registro .bottom-text span {
   color: #00f5a0;
   cursor: pointer;
+}
+
+body.body-registro .error{
+  color: red;
+  margin: 10px;
+  padding: auto;
 }

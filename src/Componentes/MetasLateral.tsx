@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { ModalMeta } from './CrearMetaModal'
+import { crearMeta } from '../Service/MetaService';
+
 
 export const MetasLateral = () => {
+   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
       <aside className="barraCreacionYListado">
-          <button className="crearMeta">+</button>
+          <button  onClick={() => setIsModalOpen(true)} className="crearMeta">
+            +
+          </button>
+
+          <ModalMeta
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onSubmit={crearMeta}
+          />
 
           <div className="filtracionMetas">
             <h3>Filtrar por</h3>

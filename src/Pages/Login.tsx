@@ -17,7 +17,7 @@ export const Login = () => {
     };
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+ const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
@@ -39,7 +39,7 @@ export const Login = () => {
       <div className="side-accent"></div>
       <h2>Iniciar sesión</h2>
       <div className="toggle">
-        ¿No tienes cuenta? <span>Regístrate</span>
+        ¿No tienes cuenta? <span onClick={() => navigate("/registro")}>Regístrate</span>
       </div>
 
       <form onSubmit={handleSubmit}>
