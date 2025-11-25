@@ -1,7 +1,9 @@
 import axios from "axios";
 import type { CrearMetaDTO } from "../DTO/CrearMetaDTO";
+import { URL_UTLIZADA } from "../AppConstants/AppURL";
 
-const API_URL = "http://localhost:3030/metas";
+
+const API_URL = `${URL_UTLIZADA}/metas`;
 
 const getAuthHeader = () => {
   const token = localStorage.getItem("token");

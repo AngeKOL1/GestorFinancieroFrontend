@@ -1,8 +1,9 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-// quitar las llaves
+import { URL_UTLIZADA } from "../AppConstants/AppURL";
 
-const API_URL = "http://localhost:3030/login";
+
+const API_URL = `${URL_UTLIZADA}/login`;
 
 export const loginRequest = async (correo: string, password: string) => {
   try {
