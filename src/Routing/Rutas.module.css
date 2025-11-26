@@ -1,82 +1,155 @@
-/* Reset general */
+/******************************
+  RESET GENERAL
+*******************************/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 🔹 Clase aplicada al body desde useEffect */
-.bodyFondo {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #0a4120, #0c1268);
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/******************************
+  VARIABLES DE TEMA
+*******************************/
+.darkMode {
+  --bg: radial-gradient(circle at 20% 20%, #0a4120 0%, #0c1268 100%);
+  --text: #ffffff;
+  --text-soft: rgba(255,255,255,0.75);
+  --btn-main: #00f5a0;
+  --btn-hover: #00d9f5;
+  --header-bg: rgba(0, 0, 0, 0.25);
 }
 
-/* Barra superior */
+.lightMode {
+  --bg: radial-gradient(circle at 30% 20%, #f6fff0 0%, #dce9ff 100%);
+  --text: #1a1a1a;
+  --text-soft: rgba(0,0,0,0.55);
+  --btn-main: #0077ff;
+  --btn-hover: #0099ff;
+  --header-bg: rgba(255,255,255,0.7);
+}
+
+/******************************
+  BODY
+*******************************/
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.5s ease, color 0.3s ease;
+  overflow-x: hidden; /* 🔧 evita barra horizontal extraña */
+}
+
+/******************************
+  HEADER
+*******************************/
 .header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(8px);
+  padding: 18px 45px;
+  background: var(--header-bg);
+  backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 20;
+  transition: background 0.4s ease;
 }
 
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: #fff;
+  color: var(--text);
 }
 
+/******************************
+  NAV LINKS
+*******************************/
 .navLinks {
   display: flex;
-  gap: 25px;
+  gap: 30px;
+  align-items: center;
 }
 
 .navLinks a {
+  color: var(--text);
   text-decoration: none;
-  color: #fff;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-.navLinks a:hover {
-  color: #00f5a0;
+.navLinks a:hover,
+.navLinks a:focus-visible {
+  color: var(--btn-main);
+  outline: none;
 }
 
+/******************************
+  THEME TOGGLE BUTTON
+*******************************/
+.themeToggle {
+  background: transparent;
+  border: 2px solid var(--btn-main);
+  color: var(--text);
+  font-size: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.themeToggle:hover,
+.themeToggle:focus-visible {
+  background: var(--btn-main);
+  color: #0d1b2a;
+  transform: rotate(14deg);
+}
+
+/******************************
+  BOTÓN LOGIN
+*******************************/
 .btnLogin {
-  background: #00f5a0;
+  background: var(--btn-main);
   color: #0d1b2a;
   padding: 8px 20px;
   border-radius: 20px;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
-.btnLogin:hover {
-  background: #00d9f5;
+.btnLogin:hover,
+.btnLogin:focus-visible {
+  background: var(--btn-hover);
   transform: translateY(-2px);
 }
 
-/* Contenido principal */
+/******************************
+  CONTENEDOR CENTRAL
+*******************************/
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/******************************
+  MAIN CONTENT
+*******************************/
 .mainContent {
-  flex: 1;
+  text-align: center;
+  padding-top: 170px; /* espacio para header fijo */
+  padding-bottom: 60px;
+  min-height: calc(100vh - 170px); /* 🔥 empuja footer al fondo */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* centra verticalmente */
   align-items: center;
-  text-align: center;
-  padding: 100px 20px;
 }
 
 .mainContent h1 {
@@ -86,58 +159,185 @@
 }
 
 .mainContent p {
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  color: var(--text-soft);
+  max-width: 600px;
+  margin: 0 auto 25px auto;
 }
 
+/******************************
+  BOTÓN PRINCIPAL
+*******************************/
 .btnPrimary {
-  background: #00f5a0;
+  background: var(--btn-main);
   color: #0d1b2a;
-  border: none;
   padding: 14px 40px;
-  font-size: 1rem;
-  font-weight: 600;
   border-radius: 30px;
-  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 245, 160, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 245, 160, 0.25);
 }
 
-.btnPrimary:hover {
-  background: #00d9f5;
-  box-shadow: 0 8px 25px rgba(0, 245, 160, 0.4);
+.btnPrimary:hover,
+.btnPrimary:focus-visible {
+  background: var(--btn-hover);
   transform: translateY(-2px);
 }
 
-/* Gradientes decorativos */
-.circle {
+/******************************
+  DECORACIONES
+*******************************/
+/******************************
+  BLOBS SUAVES DINÁMICOS
+*******************************/
+.blob {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.6;
+  width: 340px;
+  height: 340px;
+  opacity: 0.35;
+  filter: blur(70px);
   z-index: -1;
+  animation: blobMove 14s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
-.circle1 {
-  width: 400px;
-  height: 400px;
-  background: #ff7b00;
-  top: 100px;
-  left: -100px;
+/* Blob superior izquierdo */
+.blob1 {
+  background: radial-gradient(circle at 30% 30%, #ffad33, #ff7b00);
+  top: 10%;
+  left: -120px;
+  animation-delay: 0s;
 }
 
-.circle2 {
-  width: 500px;
-  height: 500px;
-  background: #ff0080;
-  bottom: -150px;
-  right: -100px;
+/* Blob inferior derecho */
+.blob2 {
+  background: radial-gradient(circle at 70% 70%, #ff33b8, #8e00ff);
+  bottom: -10%;
+  right: -150px;
+  animation-delay: 3s;
 }
 
+/* Blob central suave */
+.blob3 {
+  background: radial-gradient(circle at 50% 50%, #00e0ff, #0066ff);
+  top: 55%;
+  left: 40%;
+  width: 420px;
+  height: 420px;
+  animation-delay: 1.5s;
+  opacity: 0.25;
+}
+
+/******************************
+  ANIMACIÓN ORGÁNICA
+*******************************/
+@keyframes blobMove {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.1);
+  }
+  100% {
+    transform: translate(-30px, 20px) scale(0.95);
+  }
+}
+
+/******************************
+  MODO CLARO: Colores más suaves
+*******************************/
+.lightMode .blob1 {
+  background: radial-gradient(circle at 30% 30%, #ffd98a, #ffb347);
+}
+
+.lightMode .blob2 {
+  background: radial-gradient(circle at 70% 70%, #ff77d1, #c85fff);
+}
+
+.lightMode .blob3 {
+  background: radial-gradient(circle at 50% 50%, #8be9ff, #6aa9ff);
+  opacity: 0.3;
+}
+
+/******************************
+  RESPONSIVE
+*******************************/
+@media (max-width: 768px) {
+  .blob {
+    width: 220px;
+    height: 220px;
+    filter: blur(50px);
+  }
+
+  .blob3 {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+/******************************
+  FOOTER
+*******************************/
 .footer {
   text-align: center;
   padding: 20px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-soft);
+}
+
+/******************************
+  ANIMACIONES SUAVES
+*******************************/
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.fade-down {
+  opacity: 0;
+  transform: translateY(-25px);
+  animation: fadeDown 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.5s; }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/******************************
+  RESPONSIVE (MOBILE)
+*******************************/
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+  
+  .navLinks {
+    gap: 18px;
+  }
+
+  .mainContent h1 {
+    font-size: 2.3rem;
+  }
+
+  .circle1,
+  .circle2 {
+    filter: blur(90px);
+  }
 }

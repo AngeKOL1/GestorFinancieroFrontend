@@ -1,0 +1,74 @@
+/******************************************
+  🌗 SISTEMA GLOBAL DE TEMAS (CLARO/OSCURO)
+******************************************/
+
+/* ⬛ Tema oscuro (por defecto) */
+:root {
+  --bg: #0d1117;
+  --bg-alt: #161b22;
+  --bg-card: #1b263b;
+
+  --text: #e6edf3;
+  --text-soft: #9da5b4;
+  --text-contrast: #ffffff;
+
+  --primary: #58a6ff;
+  --primary-hover: #1f6feb;
+
+  --success: #4ade80;
+  --danger: #ef4444;
+
+  --border: #30363d;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --shadow-soft: rgba(0, 0, 0, 0.25);
+
+  --radius: 10px;
+  --radius-sm: 6px;
+
+  --transition: 0.25s ease;
+}
+
+/* ⬜ Tema claro */
+body.light {
+  --bg: #f6f7f9;
+  --bg-alt: #ffffff;
+  --bg-card: #eef0f4;
+
+  --text: #1a1c1f;
+  --text-soft: #444;
+
+  --primary: #2563eb;
+  --primary-hover: #1e40af;
+
+  --success: #16a34a;
+  --danger: #dc2626;
+
+  --border: #d0d4da;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-soft: rgba(0, 0, 0, 0.05);
+}
+
+/******************************************
+  TIPOGRAFÍA + FOCUS ACCESIBLE
+******************************************/
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition), color var(--transition);
+  line-height: 1.5;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+a {
+  color: var(--primary);
+}
+a:hover {
+  color: var(--primary-hover);
+}

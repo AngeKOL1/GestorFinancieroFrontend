@@ -531,5 +531,161 @@ body.contenido-principal .graficosMetas {
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
 }
 
+/* ===================================================== */
+/*  🔹 MEJORAS AÑADIDAS: ANIMACIONES + TEMA CLARO        */
+/*    (todo lo anterior se mantiene igual)               */
+/* ===================================================== */
 
+/* Animación suave de entrada */
+@keyframes fadeInUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+body.contenido-principal .header,
+body.contenido-principal .barraCreacionYListado,
+body.contenido-principal .contenidoPrincipal,
+body.contenido-principal .despliegueMeta,
+body.contenido-principal .pieDePagina,
+body.contenido-principal .meta,
+body.contenido-principal .transacciones,
+body.contenido-principal .metaLateral {
+  animation: fadeInUpSoft 0.35s ease-out;
+}
+
+/* Focus accesible */
+body.contenido-principal button:focus-visible,
+body.contenido-principal input:focus-visible,
+body.contenido-principal textarea:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 3px;
+}
+
+/* ================== */
+/*     TEMA CLARO     */
+/* ================== */
+body.contenido-principal.light .monto {
+  font-weight: 500;
+  color: black;
+}
+
+body.contenido-principal.light {
+  background-color: #f5f7fb;
+  color: #111827;
+}
+
+/* Header claro */
+body.contenido-principal.light .header {
+  background-color: #e3e9f7;
+  color: #111827;
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.6);
+}
+
+/* Barra lateral clara */
+body.contenido-principal.light .barraCreacionYListado {
+  background-color: #e5e7eb;
+  color: #111827;
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.6);
+}
+
+/* Contenido principal claro */
+body.contenido-principal.light .contenidoPrincipal {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+/* Panel derecho claro */
+body.contenido-principal.light .despliegueMeta {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+/* Footer claro */
+body.contenido-principal.light .pieDePagina {
+  background-color: #e3e9f7;
+  color: #111827;
+}
+
+/* Tarjetas claras */
+body.contenido-principal.light .meta,
+body.contenido-principal.light .transacciones,
+body.contenido-principal.light .metaLateral {
+  background-color: #ffffff;
+  color: #111827;
+  box-shadow: 0 2px 6px rgba(148, 163, 184, 0.5);
+}
+
+/* Buscador claro */
+body.contenido-principal.light .nav .busqueda {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+}
+
+body.contenido-principal.light .nav .iconoBusqueda {
+  color: #6b7280;
+}
+
+body.contenido-principal.light .nav .inputBusqueda {
+  color: #111827;
+}
+
+/* Botón home claro */
+body.contenido-principal.light .nav .btnCasa {
+  background-color: #2563eb;
+}
+
+body.contenido-principal.light .nav .btnCasa:hover {
+  background-color: #1d4ed8;
+}
+
+/* Filtrado claro */
+body.contenido-principal.light .filtracionMetas button {
+  background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+  color: #111827;
+  border-color: #cbd5e1;
+}
+
+body.contenido-principal.light .filtracionMetas button:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* Textarea clara */
+body.contenido-principal.light .infoMeta textarea {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+body.contenido-principal.light .infoMeta textarea:focus {
+  background-color: #f9fafb;
+  border-color: #2563eb;
+}
+
+/* Datos de transacción claros */
+body.contenido-principal.light .transacciones .dato {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* Colores de éxito/peligro se mantienen para contraste */
+body.contenido-principal.light .transacciones .tipo.ingreso {
+  color: #16a34a;
+}
+
+body.contenido-principal.light .transacciones .tipo.gasto {
+  color: #dc2626;
+}
+
+/* Gráficos claros */
+body.contenido-principal.light .graficosMetas {
+  color: black;
+  background-color: #e5e7eb;
+  box-shadow: inset 0 2px 5px rgba(148, 163, 184, 0.6);
+}

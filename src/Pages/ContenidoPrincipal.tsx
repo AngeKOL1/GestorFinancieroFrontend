@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { MetasLateral } from '../Componentes/MetasLateral';
 import { ListarMetas } from '../Componentes/ListarMetas';
 import { Transacciones } from '../Componentes/Transacciones';
-import'./styles/Principal.css';
+import './styles/Principal.css';
 
 export const ContenidoPrincipal = () => {
+
+
   useEffect(() => {
-    document.body.classList.add('contenido-principal'); // coincide con tu CSS
+    document.body.classList.add('contenido-principal');
 
     return () => {
       document.body.classList.remove('contenido-principal');
@@ -14,53 +16,75 @@ export const ContenidoPrincipal = () => {
   }, []);
 
 
+  const toggleTheme = () => {
+    document.body.classList.toggle("light");
+  };
 
   return (
-      <div className="layout">
+    <div className="layout">
 
-        {/* Header */}
-        <header className="header">
-          <div className="perfil">
+
+      <header className="header" role="banner">
+
+
+        <div className="perfil">
+          <img 
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" 
+            alt="Foto de perfil del usuario"
+          />
+
+          <div className="trofeos">
             <img 
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" 
-              alt="Perfil usuario"
+              src="https://img.freepik.com/vector-gratis/estilo-trofeo-plano_78370-3222.jpg" 
+              alt="Trofeo de logros"
             />
-            <div className="trofeos">
-              <img 
-                src="https://img.freepik.com/vector-gratis/estilo-trofeo-plano_78370-3222.jpg" 
-                alt="Trofeo"
-              />
-            </div>
+          </div>
+        </div>
+
+
+        <nav className="nav" aria-label="Navegación principal">
+
+          <button 
+            className="btnCasa"
+            aria-label="Ir a inicio"
+          >
+            <i className="fa-solid fa-house"></i>
+          </button>
+          <div className="busqueda" role="search">
+            <div className="iconoBusqueda" aria-hidden="true">🔍</div>
+
+            <input
+              className="inputBusqueda"
+              type="text"
+              placeholder="Buscar Meta"
+              aria-label="Buscar metas"
+            />
           </div>
 
-          <nav className="nav">
-            <button className="btnCasa">
-              <i className="fa-solid fa-house"></i>
-            </button>
+          <button
+            onClick={toggleTheme}
+            aria-label="Cambiar entre tema claro y oscuro"
+            className="btnCasa"
+            style={{ marginLeft: "10px" }}
+          >
+            🌓
+          </button>
 
-            <div className="busqueda">
-              <div className="iconoBusqueda">🔍</div>
-              <input 
-                className="inputBusqueda" 
-                type="text" 
-                placeholder="Buscar Meta" 
-              />
-            </div>
-          </nav>
-        </header>
+        </nav>
+
+      </header>
 
 
-        <MetasLateral></MetasLateral>
+      <MetasLateral />
+      <ListarMetas />
+      <Transacciones />
 
-        <ListarMetas></ListarMetas>
 
-        <Transacciones></Transacciones>
+      <footer className="pieDePagina" role="contentinfo">
+        &copy; Envíanos tus dudas a{" "}
+        <a href="#" aria-label="Enviar correo a GGestor">Correo GGestor</a>
+      </footer>
 
-        {/* Footer */}
-        <footer className="pieDePagina">
-          &copy; Envíanos tus dudas a <a href="#">Correo GGestor</a>
-        </footer>
-
-      </div>
+    </div>
   );
 };
