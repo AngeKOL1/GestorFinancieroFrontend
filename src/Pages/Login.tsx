@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles/LoginStyles.css";
-import { loginRequest } from "../Service/LoginService"; // ajusta la ruta
+import { loginRequest } from "../service/LoginService"; // ajusta la ruta
 import { Navigate, useNavigate } from "react-router-dom";
 
 export const Login = () => {

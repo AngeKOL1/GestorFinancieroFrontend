@@ -1,9 +1,9 @@
 import React, { useEffect, useState, type FormEvent } from 'react'
-import type { CrearUsuarioDTO } from '../DTO/CrearUsuarioDTO';
+import type { CrearUsuarioDTO } from '../dto/CrearUsuarioDTO';
 import './styles/Registro.css'
-import { RegistrarUsuario } from '../Service/UsuarioService';
+import { RegistrarUsuario } from '../service/UsuarioService';
 import { useNavigate } from 'react-router-dom';
-import { loginRequest } from '../Service/LoginService';
+import { loginRequest } from '../service/LoginService';
 
 
 export const Registro = () => {

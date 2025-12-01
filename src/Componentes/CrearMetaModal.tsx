@@ -1,6 +1,6 @@
 import React from "react";
 import "./Styles/ModalMeta.css";
-import type { CrearMetaDTO } from "../DTO/CrearMetaDTO";
+import type { CrearMetaDTO } from "../dto/CrearMetaDTO";
 
 interface ModalMetaProps {
   isOpen: boolean;

@@ -1,6 +1,6 @@
 import axios from "axios";
-import type { UsuarioDTO } from "../DTO/CrearUsuarioDTO";
-import { URL_UTLIZADA } from "../AppConstants/AppURL";
+import type { UsuarioDTO } from "../dto/CrearUsuarioDTO";
+import { URL_UTLIZADA } from "../appConstants/AppURL";
 
 const URL = `${URL_UTLIZADA}/usuarios/registro`
 

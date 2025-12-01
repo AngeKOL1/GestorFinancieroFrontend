@@ -17,11 +17,48 @@ body.contenido-principal .layout{
     "barraCreacionYListado contenidoPrincipal contenidoPrincipal despliegueMeta"
     "barraCreacionYListado pieDePagina pieDePagina despliegueMeta";
   grid-template-rows: 80px auto auto 60px;
-  grid-template-columns: 260px 1fr 1fr 320px;
+  grid-template-columns: 350px 1.2fr 1.2fr 450px;;
   gap: 8px;
   padding: 8px;
   box-sizing: border-box;
+  overflow: hidden;
 }
+
+
+body.contenido-principal .barraCreacionYListado,        
+body.contenido-principal .contenidoPrincipal,           
+body.contenido-principal .despliegueMeta {    
+  overflow-y: auto;            
+  height: calc(100vh - 70px);  
+  padding-right: 8px;          
+}
+
+/* Aplica a cada panel */
+body.contenido-principal .barraCreacionYListado::-webkit-scrollbar,
+body.contenido-principal .contenidoPrincipal::-webkit-scrollbar,
+body.contenido-principal .despliegueMeta::-webkit-scrollbar {
+  width: 8px;               /* grosor */
+}
+
+body.contenido-principal .barraCreacionYListado::-webkit-scrollbar-track,
+body.contenido-principal .contenidoPrincipal::-webkit-scrollbar-track,
+body.contenido-principal .despliegueMeta::-webkit-scrollbar-track {
+  background: transparent;  /* fondo limpio */
+}
+
+body.contenido-principal .barraCreacionYListado::-webkit-scrollbar-thumb,
+body.contenido-principal .contenidoPrincipal::-webkit-scrollbar-thumb,
+body.contenido-principal .despliegueMeta::-webkit-scrollbar-thumb {
+  background: rgba(89, 88, 88, 0.6); /* color del scroll */
+  border-radius: 20px;               /* redondeado */
+}
+
+body.contenido-principal .barraCreacionYListado::-webkit-scrollbar-thumb:hover,
+body.contenido-principal .contenidoPrincipal::-webkit-scrollbar-thumb:hover,
+body.contenido-principal .despliegueMeta::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 52, 52, 0.8); /* color al pasar mouse */
+}
+
 
 /* --- HEADER --- */
 body.contenido-principal .header {

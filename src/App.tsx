@@ -3,12 +3,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './theme.css';
 
-import { Rutas } from './Routing/Rutas';
+import { Rutas } from './routing/Rutas';
 import { Login } from './Pages/Login';
 import { Registro } from './Pages/Registro';
 import { Error } from './Componentes/Error';
 import { ContenidoPrincipal } from './Pages/ContenidoPrincipal';
-import { ProtenccionDeRrutas } from './Routing/ProteccionDeRutas';
+import { ProtenccionDeRrutas } from './routing/ProteccionDeRutas';
+import { MetasProvider } from './hooks/MetasContext';
+import { TransaccionesProvider } from './hooks/TransaccionesContext';
 
 function App() {
   return (
@@ -23,8 +25,13 @@ function App() {
             path="/metas"
             element={
               <ProtenccionDeRrutas>
-                <ContenidoPrincipal />
+                <MetasProvider>
+                  <TransaccionesProvider>
+                    <ContenidoPrincipal />
+                  </TransaccionesProvider>
+                </MetasProvider>
               </ProtenccionDeRrutas>
+
             }
           />
 

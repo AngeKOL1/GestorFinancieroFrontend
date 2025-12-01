@@ -1,6 +1,6 @@
 import axios from "axios";
-import type { CrearMetaDTO } from "../DTO/CrearMetaDTO";
-import { URL_UTLIZADA } from "../AppConstants/AppURL";
+import type { CrearMetaDTO } from "../dto/CrearMetaDTO";
+import { URL_UTLIZADA } from "../appConstants/AppURL";
 
 
 const API_URL = `${URL_UTLIZADA}/metas`;

@@ -3,6 +3,7 @@ import { MetasLateral } from '../Componentes/MetasLateral';
 import { ListarMetas } from '../Componentes/ListarMetas';
 import { Transacciones } from '../Componentes/Transacciones';
 import './styles/Principal.css';
+import { ComponenteCentral } from '../Componentes/ComponenteCentral';
 
 export const ContenidoPrincipal = () => {
 
@@ -75,9 +76,10 @@ export const ContenidoPrincipal = () => {
       </header>
 
 
-      <MetasLateral />
-      <ListarMetas />
-      <Transacciones />
+        <MetasLateral />
+        <ComponenteCentral />
+        <Transacciones />
+
 
 
       <footer className="pieDePagina" role="contentinfo">

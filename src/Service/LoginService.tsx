@@ -1,6 +1,6 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { URL_UTLIZADA } from "../AppConstants/AppURL";
+import { URL_UTLIZADA } from "../appConstants/AppURL";
 
 
 const API_URL = `${URL_UTLIZADA}/login`;
