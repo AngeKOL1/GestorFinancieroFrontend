@@ -10,7 +10,6 @@ export const loginRequest = async (correo: string, password: string) => {
     const response = await axios.post(API_URL, { correo, password });
     const token = response.data.access_token;
 
-    // Decodificamos JWT
     const decoded = jwtDecode<{ idUsuario: number; role: string }>(token);
     const rol = decoded.role;
     const idUsuario = decoded.idUsuario;

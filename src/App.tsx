@@ -11,6 +11,8 @@ import { ContenidoPrincipal } from './Pages/ContenidoPrincipal';
 import { ProtenccionDeRrutas } from './routing/ProteccionDeRutas';
 import { MetasProvider } from './hooks/MetasContext';
 import { TransaccionesProvider } from './hooks/TransaccionesContext';
+import { NivelUsuarioProvider } from './hooks/NivelUsuarioContext';
+import { TrofeosProvider } from './hooks/TrofeosContext';
 
 function App() {
   return (
@@ -22,18 +24,21 @@ function App() {
           <Route path="/registro" element={<Registro />} />
 
           <Route
-            path="/metas"
-            element={
-              <ProtenccionDeRrutas>
-                <MetasProvider>
-                  <TransaccionesProvider>
-                    <ContenidoPrincipal />
-                  </TransaccionesProvider>
-                </MetasProvider>
-              </ProtenccionDeRrutas>
-
-            }
-          />
+              path="/metas"
+              element={
+                <ProtenccionDeRrutas>
+                  <MetasProvider>
+                    <TransaccionesProvider>
+                      <NivelUsuarioProvider>
+                        <TrofeosProvider>    
+                          <ContenidoPrincipal />
+                        </TrofeosProvider>
+                      </NivelUsuarioProvider>
+                    </TransaccionesProvider>
+                  </MetasProvider>
+                </ProtenccionDeRrutas>
+              }
+            />
 
           <Route path="*" element={<Error />} />
         </Routes>

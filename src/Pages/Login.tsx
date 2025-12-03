@@ -23,7 +23,6 @@ export const Login = () => {
     try {
       const { token, rol } = await loginRequest(correo, password);
 
-      // Guardamos el token (y opcionalmente el rol)
       localStorage.setItem("token", token);
       localStorage.setItem("rol", rol);
 

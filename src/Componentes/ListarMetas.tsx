@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMetasContext } from "../hooks/MetasContext";
 import { useTransaccionesContext } from "../hooks/TransaccionesContext";
 
@@ -7,6 +7,9 @@ export const ListarMetas: React.FC = () => {
   const { metas, loading, error } = state;
 
   const { selectMeta } = useTransaccionesContext();
+
+
+
 
   if (loading) return <p>Cargando metas...</p>;
   if (error) return <p>Error: {error}</p>;
