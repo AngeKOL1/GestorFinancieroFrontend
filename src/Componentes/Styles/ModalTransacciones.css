@@ -1,0 +1,108 @@
+/* Fondo del modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* Contenedor visual */
+.modal-container {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: 2rem;
+  border-radius: 18px;
+  width: 420px;
+  max-width: 95%;
+  position: relative;
+  animation: pop 0.3s ease;
+  border: 1px solid rgba(88, 166, 255, 0.25);
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(13, 17, 23, 0.85);
+  box-shadow: 0 4px 20px rgba(88, 166, 255, 0.2);
+}
+
+/* Cerrar */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Formularios */
+.modal-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-container input,
+.modal-container select {
+  padding: 10px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* Botón guardar */
+.btn-guardar {
+  background: #238636;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-guardar:hover {
+  background: #2ea043;
+}
+
+/* Modal delete */
+.delete-modal .btn-eliminar-confirmar {
+  background: #da3633;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.delete-modal .btn-eliminar-confirmar:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Animación */
+@keyframes pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.texto-eliminar {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.monto-eliminar {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}

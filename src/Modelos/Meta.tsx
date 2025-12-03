@@ -1,4 +1,3 @@
-// 📁 src/Modelos/Meta.ts
 export interface FechaMeta {
   idFechaMeta: number;
   mes: number;

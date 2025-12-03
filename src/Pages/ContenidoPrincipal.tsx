@@ -11,12 +11,60 @@ import "./styles/Principal.css";
 export const ContenidoPrincipal = () => {
   const { state } = useNivelUsuario();
   const { state: trofeoState } = useTrofeos();
-  const { ultimoTrofeo } = trofeoState;
 
+  const { ultimoTrofeo } = trofeoState;
   const { nivelActual, xpActual, xpNecesaria, banner, loading } = state;
 
-  const [animPorcentaje, setAnimPorcentaje] = useState(0);
+  // 🔥 Estado del buscador
+  const [busqueda, setBusqueda] = useState("");
+  const [historial, setHistorial] = useState<string[]>([]);
+  const [placeholder, setPlaceholder] = useState("Buscar metas…");
 
+  const placeholders = [
+    "Buscar metas…",
+    "Buscar por descripción…",
+    "Buscar por fecha…",
+    "Buscar por monto…",
+    "Escribe algo…",
+  ];
+
+  // 🔥 Cargar historial desde localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("historial_busqueda");
+    if (saved) setHistorial(JSON.parse(saved));
+  }, []);
+
+  // 🔥 Rotar el placeholder
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      index = (index + 1) % placeholders.length;
+      setPlaceholder(placeholders[index]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Guardar en historial
+  const guardarEnHistorial = (texto: string) => {
+    if (!texto.trim()) return;
+
+    const actualizado = [
+      texto,
+      ...historial.filter((x) => x !== texto),
+    ].slice(0, 5); // máximo 5
+
+    setHistorial(actualizado);
+    localStorage.setItem("historial_busqueda", JSON.stringify(actualizado));
+  };
+
+  const borrarBusqueda = () => {
+    setBusqueda("");
+  };
+
+  // ------------------------------
+
+  const [animPorcentaje, setAnimPorcentaje] = useState(0);
   const [mostrarTrofeos, setMostrarTrofeos] = useState(false);
 
   const porcentaje = Math.min((xpActual / xpNecesaria) * 100, 100);
@@ -40,13 +88,10 @@ export const ContenidoPrincipal = () => {
 
   return (
     <div className="layout">
-      {/* HEADER */}
-      <header className="header" role="banner">
+      <header className="header">
+
         <div className="perfil">
-          <img
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-            alt="Foto de perfil del usuario"
-          />
+          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" />
 
           {!loading && (
             <div className="nivel-info">
@@ -60,75 +105,70 @@ export const ContenidoPrincipal = () => {
                 <div
                   className="barra-progreso"
                   style={{ width: `${animPorcentaje}%` }}
-                ></div>
+                />
               </div>
             </div>
           )}
         </div>
-        <div
-            className="trofeo-reciente"
-            onClick={() => setMostrarTrofeos(true)}
-          >
-            {ultimoTrofeo ? (
-              <>
-                <img
-                  src="https://img.freepik.com/vector-gratis/estilo-trofeo-plano_78370-3222.jpg"
-                  alt="Trofeo obtenido"
-                  className="img-trofeo"
-                />
 
-                <div className="trofeo-detalles">
-                  <span className="trofeo-nombre">{ultimoTrofeo.nombre}</span>
-                  <span className="trofeo-secundario">
-                    +{ultimoTrofeo.xp} XP •{" "}
-                    {new Date(ultimoTrofeo.fecha).toLocaleDateString("es-PE")}
-                  </span>
-                </div>
-              </>
-            ) : (
-              <span className="trofeo-nombre">Sin trofeos aún</span>
-            )}
-          </div>
+        <div className="trofeo-reciente" onClick={() => setMostrarTrofeos(true)}>
+          {ultimoTrofeo ? (
+            <>
+              <img src="https://img.freepik.com/vector-gratis/estilo-trofeo-plano_78370-3222.jpg" className="img-trofeo" />
+              <div className="trofeo-detalles">
+                <span className="trofeo-nombre">{ultimoTrofeo.nombre}</span>
+                <span className="trofeo-secundario">
+                  +{ultimoTrofeo.xp} XP •
+                  {new Date(ultimoTrofeo.fecha).toLocaleDateString("es-PE")}
+                </span>
+              </div>
+            </>
+          ) : "Sin trofeos aún"}
+        </div>
 
-        <nav className="nav" aria-label="Navegación principal">
-          <button className="btnCasa" aria-label="Ir a inicio">
-            <i className="fa-solid fa-house"></i>
-          </button>
+        {/* --- NAV --- */}
+        <nav className="nav">
+          <button className="btnCasa"><i className="fa-solid fa-house" /></button>
 
-          <div className="busqueda" role="search">
+          {/* --- BUSQUEDA --- */}
+          <div className="busqueda">
             <div className="iconoBusqueda">🔍</div>
+
             <input
               className="inputBusqueda"
               type="text"
-              placeholder="Buscar Meta"
-              aria-label="Buscar metas"
+              placeholder={placeholder}
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+              onBlur={() => guardarEnHistorial(busqueda)}
             />
+
+            {/* 🔥 Icono borrar */}
+            {busqueda.length > 0 && (
+              <span className="clearSearch" onClick={borrarBusqueda}>
+                ✖
+              </span>
+            )}
           </div>
 
-          <button
-            onClick={toggleTheme}
-            aria-label="Cambiar entre tema claro y oscuro"
-            className="btnCasa"
-          >
-            🌓
-          </button>
+          <button className="btnCasa" onClick={toggleTheme}>🌓</button>
         </nav>
+
       </header>
 
+      {/* --- LAYOUT --- */}
       <MetasLateral />
 
       <ComponenteCentral
         mostrarTrofeos={mostrarTrofeos}
         onVerMetas={() => setMostrarTrofeos(false)}
+        busqueda={busqueda}
       />
 
       <Transacciones />
 
-      <footer className="pieDePagina" role="contentinfo">
-        &copy; Envíanos tus dudas a{" "}
-        <a href="#" aria-label="Enviar correo a GGestor">
-          Correo GGestor
-        </a>
+      <footer className="pieDePagina">
+        &copy; Envíanos tus dudas a <a href="#">Correo GGestor</a>
       </footer>
     </div>
   );
