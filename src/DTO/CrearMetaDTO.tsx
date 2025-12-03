@@ -1,11 +1,11 @@
 export interface CrearMetaDTO {
   nombre: string;
   montoObjetivo: number;
-  fechaFinal: string; 
-  idCategoria?: number;
-  idMisCategoria?: number;
-  idMeta: number;
-  idEstadoMeta: number;
-}
+  fechaFinal: string;
 
+  nombreCategoria: string | null;
+  nombreMisCategoria: string | null;
+  nombreTipoMeta: string | null;
+  nombreEstadoMeta: string | null;
+}
 

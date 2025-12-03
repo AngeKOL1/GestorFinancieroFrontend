@@ -1,6 +1,7 @@
 import axios from "axios";
 import type { CrearMetaDTO } from "../dto/CrearMetaDTO";
 import { URL_UTLIZADA } from "../appConstants/AppURL";
+import type { EditarMetaDTO } from "../dto/EditarMetaDTO";
 
 
 const API_URL = `${URL_UTLIZADA}/metas`;
@@ -43,3 +44,12 @@ export const getTodasLasMetas = async () => {
     throw error;
   }
 };
+export const editarMeta = async (idMeta: number, data: EditarMetaDTO) => {
+  const res = await axios.put(`${API_URL}/${idMeta}`, data, getAuthHeader());
+  return res.data;
+};
+
+export const eliminarMeta = async (idMeta: number) => {
+  await axios.delete(`${API_URL}/${idMeta}`, getAuthHeader());
+};
+
