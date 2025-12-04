@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { useTransaccionesContext } from "../hooks/TransaccionesContext";
 import type { CrearTransaccionDTO } from "../dto/CrearTransaccionDTO";
 import "./Styles/ModalTransacciones.css";
@@ -30,46 +31,51 @@ export const ModalCrearTransaccion: React.FC<Props> = ({ onClose }) => {
     onClose();
   };
 
-  return (
-    <div className="modal-overlay">
-      <div className="modal-container glass">
-        <button className="modal-close" onClick={onClose}>✖</button>
+  return createPortal(
+    (
+      <div className="trans-crear-overlay">
+        <div className="trans-crear-container">
 
-        <h2>Nueva Transacción</h2>
+          <button className="trans-crear-close" onClick={onClose}>✖</button>
 
-        <form onSubmit={handleSubmit}>
-          
-          <label>Monto</label>
-          <input
-            type="number"
-            value={monto}
-            onChange={(e) => setMonto(e.target.value)}
-            required
-          />
+          <h2>Nueva Transacción</h2>
 
-          <label>Descripción</label>
-          <input
-            type="text"
-            value={descripcion}
-            onChange={(e) => setDescripcion(e.target.value)}
-            placeholder="Ej. Aporte a meta"
-            required
-          />
+          <form onSubmit={handleSubmit}>
 
-          <label>Tipo</label>
-          <select
-            value={tipo}
-            onChange={(e) => setTipo(e.target.value as any)}
-          >
-            <option value="Ingreso">Ingreso</option>
-            <option value="Gasto">Gasto</option>
-          </select>
+            <label>Monto</label>
+            <input
+              type="number"
+              value={monto}
+              onChange={(e) => setMonto(e.target.value)}
+              required
+            />
 
-          <button className="btn-guardar" type="submit">
-            Guardar
-          </button>
-        </form>
+            <label>Descripción</label>
+            <input
+              type="text"
+              value={descripcion}
+              onChange={(e) => setDescripcion(e.target.value)}
+              placeholder="Ej. Aporte a meta"
+              required
+            />
+
+            <label>Tipo</label>
+            <select
+              value={tipo}
+              onChange={(e) => setTipo(e.target.value as any)}
+            >
+              <option value="Ingreso">Ingreso</option>
+              <option value="Gasto">Gasto</option>
+            </select>
+
+            <button className="trans-crear-btn" type="submit">
+              Guardar
+            </button>
+          </form>
+
+        </div>
       </div>
-    </div>
+    ),
+    document.getElementById("modal-root")!
   );
 };

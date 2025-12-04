@@ -11,7 +11,7 @@
 }
 
 /* Contenedor visual */
-.modal-container {
+.modal-container-editar {
   background: #0d1117;
   color: #e6edf3;
   padding: 2rem;
@@ -42,14 +42,14 @@
 }
 
 /* Formularios */
-.modal-container form {
+.modal-container-editar form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.modal-container input,
-.modal-container select {
+.modal-container-editar input,
+.modal-container-editar select {
   padding: 10px;
   background: #161b22;
   border: 1px solid #30363d;
@@ -105,4 +105,161 @@
 .monto-eliminar {
   font-size: 1.3rem;
   margin-bottom: 1rem;
+}
+/* === OVERLAY === */
+.trans-eliminar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2200;
+}
+
+/* === CONTENEDOR === */
+.trans-eliminar-container {
+  background: #111827;
+  padding: 2rem;
+  width: 420px;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  position: relative;
+  animation: popIn 0.25s ease;
+  color: #e5e7eb;
+}
+
+/* === CERRAR === */
+.trans-eliminar-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* === TEXTO === */
+.trans-eliminar-texto {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+.trans-eliminar-monto {
+  margin: 0.5rem 0 1rem 0;
+  font-size: 1.1rem;
+  color: #f87171;
+}
+
+/* === INPUT === */
+.trans-eliminar-container input {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: 1px solid #374151;
+  background: #0d1117;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* === BOTÓN === */
+.trans-eliminar-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: #dc2626;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.trans-eliminar-btn:disabled {
+  background: #7f1d1d;
+  cursor: not-allowed;
+}
+
+.trans-eliminar-btn:not(:disabled):hover {
+  background: #b91c1c;
+}
+
+/* Animación */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+/* === OVERLAY === */
+.trans-crear-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2200;
+}
+
+/* === CONTENEDOR === */
+.trans-crear-container {
+  background: #111827;
+  padding: 2rem;
+  width: 420px;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  position: relative;
+  animation: popIn 0.25s ease;
+  color: #e5e7eb;
+}
+
+/* === BOTÓN CERRAR === */
+.trans-crear-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* === INPUTS === */
+.trans-crear-container input,
+.trans-crear-container select {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: #0d1117;
+  border: 1px solid #374151;
+  color: white;
+}
+
+/* === BOTÓN GUARDAR === */
+.trans-crear-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: #22c55e;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.trans-crear-btn:hover {
+  background: #16a34a;
+}
+
+/* === Animación === */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.9); }
+  to   { opacity: 1; transform: scale(1); }
 }

@@ -40,7 +40,7 @@ export const ModalEditarTransaccion: React.FC<Props> = ({
 
   return (
     <div className="modal-overlay">
-      <div className="modal-container glass">
+      <div className="modal-container-editar glass">
         
         <button className="modal-close" onClick={onClose}>✖</button>
 

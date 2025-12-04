@@ -1,4 +1,3 @@
-// src/modelos/Transaccion.ts
 export interface Transaccion {
   idTransaccion: number;
   fechaTransaccion: string;

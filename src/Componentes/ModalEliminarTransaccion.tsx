@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { useTransaccionesContext } from "../hooks/TransaccionesContext";
 import type { Transaccion } from "../modelos/Transaccion";
 import "./Styles/ModalTransacciones.css";
@@ -13,7 +14,6 @@ export const ModalEliminarTransaccion: React.FC<Props> = ({
   onClose,
 }) => {
   const { removeTransaccion } = useTransaccionesContext();
-
   const [confirmMonto, setConfirmMonto] = useState("");
 
   const esCorrecto = Number(confirmMonto) === transaccion.monto;
@@ -24,36 +24,41 @@ export const ModalEliminarTransaccion: React.FC<Props> = ({
     onClose();
   };
 
-  return (
-    <div className="modal-overlay">
-      <div className="modal-container glass delete-modal">
-        <button className="modal-close" onClick={onClose}>✖</button>
+  return createPortal(
+    (
+      <div className="trans-eliminar-overlay">
+        <div className="trans-eliminar-container">
 
-        <h2>Eliminar Transacción</h2>
+          <button className="trans-eliminar-close" onClick={onClose}>✖</button>
 
-        <p className="texto-eliminar">
-          Para confirmar, escribe el monto exacto:
-        </p>
+          <h2>Eliminar Transacción</h2>
 
-        <p className="monto-eliminar">
-          <strong>S/ {transaccion.monto.toLocaleString("es-PE")}</strong>
-        </p>
+          <p className="trans-eliminar-texto">
+            Para confirmar, escribe el monto exacto:
+          </p>
 
-        <input
-          type="number"
-          placeholder="Escribe el monto exacto"
-          value={confirmMonto}
-          onChange={(e) => setConfirmMonto(e.target.value)}
-        />
+          <p className="trans-eliminar-monto">
+            <strong>S/ {transaccion.monto.toLocaleString("es-PE")}</strong>
+          </p>
 
-        <button
-          className="btn-eliminar-confirmar"
-          disabled={!esCorrecto}
-          onClick={handleDelete}
-        >
-          Eliminar Definitivamente
-        </button>
+          <input
+            type="number"
+            placeholder="Escribe el monto exacto"
+            value={confirmMonto}
+            onChange={(e) => setConfirmMonto(e.target.value)}
+          />
+
+          <button
+            className="trans-eliminar-btn"
+            disabled={!esCorrecto}
+            onClick={handleDelete}
+          >
+            Eliminar Definitivamente
+          </button>
+
+        </div>
       </div>
-    </div>
+    ),
+    document.getElementById("modal-root")!
   );
 };

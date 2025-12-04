@@ -1283,3 +1283,22 @@ body.contenido-principal .ingresos-gastos {
   background-color: #e04343;
   transform: translateY(-2px);
 }
+.btn-detalle {
+  background: #0d2826;
+  border: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+  transition: 0.15s ease-in-out;
+  font-size: 0.85rem;
+}
+
+.btn-detalle:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+.btn-detalle:active {
+  transform: scale(0.96);
+}

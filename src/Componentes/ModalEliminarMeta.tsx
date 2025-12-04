@@ -1,5 +1,5 @@
-// src/Componentes/ModalEliminarMeta.tsx
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import type { Meta } from "../modelos/Meta";
 import { eliminarMeta } from "../service/MetaService";
 import "./Styles/ModalDelete.css";
@@ -13,7 +13,7 @@ export const ModalEliminarMeta: React.FC<ModalEliminarMetaProps> = ({
   meta,
   onClose,
 }) => {
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
   const coincide = input.trim() === meta.nombre;
@@ -22,46 +22,44 @@ export const ModalEliminarMeta: React.FC<ModalEliminarMetaProps> = ({
     e.preventDefault();
     if (!coincide) return;
 
+    setLoading(true);
     try {
-      setLoading(true);
       await eliminarMeta(meta.idMeta);
-      // Ideal: refrescar contexto de metas. Por ahora:
       window.location.reload();
-    } catch (error) {
-      console.error("Error al eliminar meta:", error);
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      console.error(err);
     }
+    setLoading(false);
   };
 
-  return (
-    <div className="modal-overlay">
-      <div className="modal-delete-container">
-        <button className="modal-close" onClick={onClose}>
-          ✖
-        </button>
+  const modal = (
+    <div className="delm-overlay">
+      <div className="delm-box">
 
-        <h3>¿Eliminar esta meta?</h3>
+        <button className="delm-close" onClick={onClose}>✖</button>
 
-        <p className="warning-text">
+        <h3 className="delm-title">¿Eliminar esta meta?</h3>
+
+        <p className="delm-warning">
           Esta acción no se puede deshacer.  
-          Para continuar, escribe el nombre exacto de la meta:
+          Para continuar escribe el nombre exacto:
         </p>
 
-        <p className="meta-name">“{meta.nombre}”</p>
+        <p className="delm-meta-name">“{meta.nombre}”</p>
 
         <form onSubmit={handleSubmit}>
           <input
+            className="delm-input"
             type="text"
             placeholder="Escribe el nombre aquí..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
 
-          <div className="delete-actions">
+          <div className="delm-actions">
             <button
               type="button"
-              className="cancelar"
+              className="delm-btn-cancel"
               onClick={onClose}
               disabled={loading}
             >
@@ -70,14 +68,17 @@ export const ModalEliminarMeta: React.FC<ModalEliminarMetaProps> = ({
 
             <button
               type="submit"
-              className="eliminar"
+              className="delm-btn-confirm"
               disabled={!coincide || loading}
             >
               {loading ? "Eliminando..." : "Eliminar meta"}
             </button>
           </div>
         </form>
+
       </div>
     </div>
   );
+
+  return ReactDOM.createPortal(modal, document.getElementById("modal-root")!);
 };

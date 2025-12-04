@@ -7,6 +7,7 @@ import { useNivelUsuario } from "../hooks/NivelUsuarioContext";
 import { useTrofeos } from "../hooks/TrofeosContext";
 
 import "./styles/Principal.css";
+import { PerfilMenu } from "../Componentes/PerfilMenu";
 
 export const ContenidoPrincipal = () => {
   const { state } = useNivelUsuario();
@@ -15,7 +16,6 @@ export const ContenidoPrincipal = () => {
   const { ultimoTrofeo } = trofeoState;
   const { nivelActual, xpActual, xpNecesaria, banner, loading } = state;
 
-  // 🔥 Estado del buscador
   const [busqueda, setBusqueda] = useState("");
   const [historial, setHistorial] = useState<string[]>([]);
   const [placeholder, setPlaceholder] = useState("Buscar metas…");
@@ -28,13 +28,11 @@ export const ContenidoPrincipal = () => {
     "Escribe algo…",
   ];
 
-  // 🔥 Cargar historial desde localStorage
   useEffect(() => {
     const saved = localStorage.getItem("historial_busqueda");
     if (saved) setHistorial(JSON.parse(saved));
   }, []);
 
-  // 🔥 Rotar el placeholder
   useEffect(() => {
     let index = 0;
     const interval = setInterval(() => {
@@ -45,14 +43,14 @@ export const ContenidoPrincipal = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Guardar en historial
+
   const guardarEnHistorial = (texto: string) => {
     if (!texto.trim()) return;
 
     const actualizado = [
       texto,
       ...historial.filter((x) => x !== texto),
-    ].slice(0, 5); // máximo 5
+    ].slice(0, 5); 
 
     setHistorial(actualizado);
     localStorage.setItem("historial_busqueda", JSON.stringify(actualizado));
@@ -62,8 +60,13 @@ export const ContenidoPrincipal = () => {
     setBusqueda("");
   };
 
-  // ------------------------------
+  const [mostrarMenuPerfil, setMostrarMenuPerfil] = useState(false);
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login"; 
+  };
+  
   const [animPorcentaje, setAnimPorcentaje] = useState(0);
   const [mostrarTrofeos, setMostrarTrofeos] = useState(false);
 
@@ -89,9 +92,11 @@ export const ContenidoPrincipal = () => {
   return (
     <div className="layout">
       <header className="header">
+        
 
-        <div className="perfil">
+      <div className="perfil" onClick={() => setMostrarMenuPerfil(!mostrarMenuPerfil)}>
           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" />
+
 
           {!loading && (
             <div className="nivel-info">
@@ -155,6 +160,12 @@ export const ContenidoPrincipal = () => {
         </nav>
 
       </header>
+
+      <PerfilMenu
+          visible={mostrarMenuPerfil}
+          onClose={() => setMostrarMenuPerfil(false)}
+          onLogout={logout}
+        />
 
       {/* --- LAYOUT --- */}
       <MetasLateral />

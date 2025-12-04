@@ -1,10 +1,14 @@
+import React, { useState } from "react";
 import { GridTrofeos } from "./GridTrofeos";
 import { ListarMetas } from "./ListarMetas";
+import { VistaMetaDetalle } from "./VistaMetaDetalle";
+
 import { ModalEditarMeta } from "./ModalEditarMeta";
 import { ModalEliminarMeta } from "./ModalEliminarMeta";
+
 import { useMetasContext } from "../hooks/MetasContext";
-import { useTrofeos } from "../hooks/TrofeosContext";
-import { useState } from "react";
+
+import type { Meta } from "../modelos/Meta";
 
 interface Props {
   mostrarTrofeos: boolean;
@@ -17,23 +21,33 @@ export const ComponenteCentral: React.FC<Props> = ({
   onVerMetas,
   busqueda,
 }) => {
+
   const { state } = useMetasContext();
   const { metas } = state;
 
-  const [metaSeleccionada, setMetaSeleccionada] = useState<any>(null);
-  const [editarAbierto, setEditarAbierto] = useState(false);
-  const [eliminarAbierto, setEliminarAbierto] = useState(false);
+  const [metaSeleccionada, setMetaSeleccionada] = useState<Meta | null>(null);
+  const [metaEditar, setMetaEditar] = useState<Meta | null>(null);
+  const [metaEliminar, setMetaEliminar] = useState<Meta | null>(null);
 
-  const abrirEditar = (idMeta: number) => {
-    const meta = metas.find((m) => m.idMeta === idMeta);
+  const handleVerDetalle = (meta: Meta) => {
     setMetaSeleccionada(meta);
-    setEditarAbierto(true);
   };
 
-  const abrirEliminar = (idMeta: number, nombre: string) => {
-    const meta = metas.find((m) => m.idMeta === idMeta);
-    setMetaSeleccionada(meta);
-    setEliminarAbierto(true);
+  const handleVolverDeDetalle = () => {
+    setMetaSeleccionada(null);
+  };
+
+  const findMeta = (idMeta: number): Meta | null => {
+    return metas.find((m) => m.idMeta === idMeta) ?? null;
+  };
+
+  const handleEditar = (idMeta: number) => {
+    const meta = findMeta(idMeta);
+    if (meta) setMetaEditar(meta);
+  };
+  const handleEliminar = (idMeta: number) => {
+    const meta = findMeta(idMeta);
+    if (meta) setMetaEliminar(meta);
   };
 
   return (
@@ -42,42 +56,39 @@ export const ComponenteCentral: React.FC<Props> = ({
         <h1>GGestor</h1>
         <p>Resumen de tus metas</p>
 
-       <div className="btnsMorP">
-        <button 
-          className={mostrarTrofeos ? "" : "active"}
-          onClick={onVerMetas}
-        >
-          Metas
-        </button>
-
-        <button className={mostrarTrofeos ? "active" : ""}>
-          Presupuestos
-        </button>
-      </div>
-
+        <div className="btnsMorP">
+          <button onClick={onVerMetas}>Metas</button>
+          <button>Presupuestos</button>
+        </div>
       </div>
 
       {mostrarTrofeos ? (
         <GridTrofeos />
+      ) : metaSeleccionada ? (
+        <VistaMetaDetalle 
+          meta={metaSeleccionada} 
+          onVolver={handleVolverDeDetalle} 
+        />
       ) : (
         <ListarMetas
           busqueda={busqueda}
-          onEditar={abrirEditar}
-          onEliminar={abrirEliminar}
+          onEditar={handleEditar}
+          onEliminar={handleEliminar}
+          onVerDetalle={handleVerDetalle}
         />
       )}
 
-      {editarAbierto && metaSeleccionada && (
+      {metaEditar && (
         <ModalEditarMeta
-          meta={metaSeleccionada}
-          onClose={() => setEditarAbierto(false)}
+          meta={metaEditar}
+          onClose={() => setMetaEditar(null)}
         />
       )}
 
-      {eliminarAbierto && metaSeleccionada && (
+      {metaEliminar && (
         <ModalEliminarMeta
-          meta={metaSeleccionada}
-          onClose={() => setEliminarAbierto(false)}
+          meta={metaEliminar}
+          onClose={() => setMetaEliminar(null)}
         />
       )}
     </section>

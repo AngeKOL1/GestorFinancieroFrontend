@@ -1,17 +1,20 @@
 import React from "react";
 import { useMetasContext } from "../hooks/MetasContext";
 import { useTransaccionesContext } from "../hooks/TransaccionesContext";
+import type { Meta } from "../modelos/Meta";
 
 interface Props {
   busqueda: string;
   onEditar: (metaId: number) => void;
   onEliminar: (metaId: number, nombre: string) => void;
+  onVerDetalle: (meta: Meta) => void;
 }
 
 export const ListarMetas: React.FC<Props> = ({
   busqueda,
   onEditar,
   onEliminar,
+  onVerDetalle,
 }) => {
   const { state } = useMetasContext();
   const { metas, loading, error } = state;
@@ -80,6 +83,16 @@ export const ListarMetas: React.FC<Props> = ({
 
               <div className="btnsMetas">
                 <button
+                  className="btn-detalle"
+                  onClick={(e) => {
+                    e.stopPropagation();       
+                    onVerDetalle(meta);
+                  }}
+                >
+                  Ver detalle
+                </button>
+
+                <button
                   className="btn-editar"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -98,7 +111,6 @@ export const ListarMetas: React.FC<Props> = ({
                 >
                   Eliminar
                 </button>
-
               </div>
             </div>
           </div>

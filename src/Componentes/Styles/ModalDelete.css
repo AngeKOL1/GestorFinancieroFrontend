@@ -1,85 +1,143 @@
-/* src/Componentes/Styles/ModalDelete.css */
+/* === OVERLAY AISLADO === */
+.delm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Muy arriba, pero aislado */
+}
 
-.modal-delete-container {
-  background: #0b1220;
-  padding: 1.7rem;
-  border-radius: 16px;
-  width: 400px;
-  max-width: 90%;
-  color: #e6edf3;
+/* === CAJA DEL MODAL === */
+.delm-box {
+  background: #111827;
+  width: 420px;
+  max-width: 92%;
+  padding: 1.8rem;
+  border-radius: 18px;
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.55);
   position: relative;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+  animation: delmPop 0.25s ease-out;
+  color: #e5e7eb;
+  font-family: "Inter", sans-serif;
 }
 
-.modal-delete-container h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+/* === BOTÓN CERRAR === */
+.delm-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 1.3rem;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 
-.warning-text {
-  color: #f97373;
-  font-size: 0.9rem;
-  margin-bottom: 0.6rem;
+.delm-close:hover {
+  color: #fff;
+  transform: scale(1.15);
 }
 
-.meta-name {
+/* === TITULO === */
+.delm-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
   font-weight: 600;
-  color: #93c5fd;
-  margin-bottom: 1rem;
+  color: #f87171;
 }
 
-.modal-delete-container input {
+/* === TEXTO DE ADVERTENCIA === */
+.delm-warning {
+  font-size: 0.9rem;
+  line-height: 1.35rem;
+  color: #cbd5e1;
+  margin-bottom: 0.7rem;
+}
+
+/* === NOMBRE DESTACADO === */
+.delm-meta-name {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  color: #38bdf8;
+}
+
+/* === INPUT === */
+.delm-input {
   width: 100%;
-  padding: 0.6rem 0.75rem;
+  padding: 0.7rem 0.9rem;
   border-radius: 10px;
   border: 1px solid #374151;
-  background: #020617;
+  background: #0a0f18;
   color: #e5e7eb;
-  margin-bottom: 1rem;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1.4rem;
+  transition: 0.2s ease;
+  font-size: 0.95rem;
 }
 
-.modal-delete-container input:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+.delm-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
 }
 
-.delete-actions {
+/* === CONTENEDOR BOTONES === */
+.delm-actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.6rem;
+  justify-content: space-between;
+  gap: 0.7rem;
 }
 
-.delete-actions .cancelar,
-.delete-actions .eliminar {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+/* === BOTÓN CANCELAR === */
+.delm-btn-cancel {
+  flex: 1;
+  background: #4b5563;
+  color: white;
+  padding: 0.7rem;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  font-weight: 500;
+  transition: 0.2s ease;
 }
 
-.delete-actions .cancelar {
-  background: #6b7280;
-  color: white;
+.delm-btn-cancel:hover {
+  background: #374151;
 }
 
-.delete-actions .cancelar:hover:not(:disabled) {
-  background: #4b5563;
-}
-
-.delete-actions .eliminar {
+/* === BOTÓN CONFIRMAR === */
+.delm-btn-confirm {
+  flex: 1;
   background: #dc2626;
   color: white;
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.delete-actions .eliminar:hover:not(:disabled) {
+.delm-btn-confirm:hover:not(:disabled) {
   background: #b91c1c;
 }
 
-.delete-actions button:disabled {
-  opacity: 0.6;
+.delm-btn-confirm:disabled {
+  background: #7f1d1d;
   cursor: not-allowed;
+}
+
+/* === ANIMACIÓN === */
+@keyframes delmPop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
